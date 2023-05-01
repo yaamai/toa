@@ -38,6 +38,8 @@
       parent: document.querySelector('.editor'),
     })
 
+    view.focus()
+
   })
 
 
