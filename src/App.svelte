@@ -1,7 +1,14 @@
 <script lang="ts">
-  import CodeMirror from './CodeMirror.svelte'
+  import Router from 'svelte-spa-router'
+  import Page from './Page.svelte'
+
+  const routes = {
+    '/*': Page,
+  }
+
+//  <CodeMirror yjsHost="ws://192.168.130.104:1234" yjsName="my-roomname"/>
 </script>
 
 <main>
-  <CodeMirror yjsHost="ws://192.168.130.104:1234" yjsName="my-roomname"/>
+  <Router {routes}/>
 </main>
