@@ -1,5 +1,8 @@
 <script lang="ts">
 import CodeMirror from '$lib/CodeMirror.svelte'
+import { ToastMark } from '$lib/toastmark';
+import { Renderer } from '$lib/toastmark/html/renderer';
+
 
 /** @type {import('./$types').PageData} */
 export let data;

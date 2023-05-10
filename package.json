@@ -31,6 +31,8 @@
 	"dependencies": {
 		"@replit/codemirror-vim": "^6.0.14",
 		"codemirror": "^6.0.1",
+		"entities": "^4.5.0",
+		"mdurl": "^1.0.1",
 		"y-codemirror.next": "^0.3.2",
 		"y-websocket": "^1.5.0",
 		"yjs": "^13.6.1"
