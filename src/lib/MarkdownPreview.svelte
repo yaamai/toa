@@ -9,11 +9,22 @@
   import * as Y from 'yjs'
   import { WebsocketProvider } from "/node_modules/y-websocket/src/y-websocket.js";
 
+  import { onMount } from 'svelte';
+
   const renderer = new Renderer({ gfm: true, nodeId: true });
 
   // exported for scroll sync
   export let parser = new ToastMark();
   export let self: HTMLElement = null;
+
+  onMount(() => {
+    self.addEventListener("click", (ev) => {
+        let el = document.createElement("input")
+        el.value = ev.target.innerText
+        ev.target.appendChild(el)
+        console.log(ev)
+    })
+  })
 
   export function refresh(changeObj: Change) {
       console.log(changeObj)
@@ -106,8 +117,6 @@
   div :global(input[type="checkbox"]) {
     /* Remove most all native input styles */
     appearance: none;
-    /* For iOS < 15 */
-    background-color: var(--form-background);
     /* Not removed via appearance */
     margin: 0;
     margin-top: 0.3em;
