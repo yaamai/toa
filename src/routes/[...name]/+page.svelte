@@ -7,9 +7,10 @@ import { Renderer } from '$lib/toastmark/html/renderer';
 
 /** @type {import('./$types').PageData} */
 export let data;
+export let yjsHost = (location.protocol == "https:" ? "wss" : "ws") + "://" + location.host
 </script>
 {#if data.mode == "edit"}
-  <CodeMirror yjsHost="ws://192.168.130.104:1234" yjsName="my-roomname"/>
+  <CodeMirror yjsHost={yjsHost} yjsName={data.name || "/"} />
 {:else}
-  <MarkdownPreview yjsHost="ws://192.168.130.104:1234" yjsName="my-roomname"/>
+  <MarkdownPreview yjsHost={yjsHost} yjsName={data.name || "/"} />
 {/if}

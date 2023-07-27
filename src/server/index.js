@@ -1,3 +1,4 @@
+import * as path from 'path'
 import express from 'express'
 import ws from 'ws'
 import * as http from 'http'
@@ -11,11 +12,25 @@ const assets = process.env.ASSETS || 'build'
 const app = express();
 
 app.use("/", express.static(assets));
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(assets, 'index.html'));
+});
 
 const wss = new ws.Server({ noServer: true })
 wss.on('connection', setupWSConnection)
 
 const server = app.listen(port);
+process.on('SIGTERM', () => {
+  server.close(() => {
+    console.log('HTTP server closed')
+  })
+})
+process.on('SIGINT', () => {
+  server.close(() => {
+    console.log('HTTP server closed')
+  })
+})
+
 server.on('upgrade', (request, socket, head) => {
     console.log("upgrade")
   // You may check auth of request here..
